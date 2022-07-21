@@ -21,7 +21,16 @@ const Home: NextPage = () => {
             </Head>
 
             <main className="container mx-auto flex flex-col items-center justify-center h-screen p-4">
-                <button onClick={createRoom}>create chat room</button>
+                <div>
+                    <h1 className="">
+                        <button
+                            className=" text-white bg-gray-800 text-lg  p-3 rounded hover:bg-gray-700"
+                            onClick={createRoom}
+                        >
+                            create chat room
+                        </button>
+                    </h1>
+                </div>
             </main>
         </>
     );

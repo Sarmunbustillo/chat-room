@@ -1,3 +1,3 @@
-# Create T3 App
+# Live chat room
 
-This is an app bootstrapped according to the [init.tips](https://init.tips) stack, also known as the T3-Stack.
+open a room and login and share that room url to chat with your friends!
