@@ -55,7 +55,7 @@ const RoomPage = () => {
 
     if (!session) {
         return (
-            <div>
+            <div className="container mx-auto flex flex-col items-center justify-center h-screen p-4">
                 <button
                     className=" text-white bg-gray-800 text-lg  p-3 rounded hover:bg-gray-700"
                     onClick={() => signIn()}
