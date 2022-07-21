@@ -38,7 +38,7 @@ const getEndingLink = () => {
     }
 
     const client = createWSClient({
-        url: process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:3011',
+        url: process.env.NEXT_PUBLIC_WS_URL || 'ws://localhost:3001',
     });
 
     return wsLink({ client });

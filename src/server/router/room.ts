@@ -1,11 +1,11 @@
+import { createRouter } from './context';
 import { randomUUID } from 'crypto';
 import {
+    Message,
     messageSubSchema,
     sendMessageSchema,
-    Message,
 } from '../../constants/schema';
 import { Events } from '../../constants/events';
-import { createRouter } from './context';
 import * as trpc from '@trpc/server';
 
 export const roomRouter = createRouter()
@@ -13,16 +13,17 @@ export const roomRouter = createRouter()
         input: sendMessageSchema,
         resolve({ ctx, input }) {
             const message: Message = {
+                id: randomUUID(),
                 ...input,
                 sentAt: new Date(),
-                id: randomUUID(),
                 sender: {
                     name: ctx.session?.user?.name || 'unknown',
                 },
             };
 
-            ctx.eventEm.emit(Events.SEND_MESSAGE, message);
-            return true;
+            ctx.ee.emit(Events.SEND_MESSAGE, message);
+
+            return message;
         },
     })
     .subscription('onSendMessage', {
@@ -35,9 +36,10 @@ export const roomRouter = createRouter()
                     }
                 }
 
-                ctx.eventEm.on(Events.SEND_MESSAGE, onMessage);
+                ctx.ee.on(Events.SEND_MESSAGE, onMessage);
+
                 return () => {
-                    ctx.eventEm.off(Events.SEND_MESSAGE, onMessage);
+                    ctx.ee.off(Events.SEND_MESSAGE, onMessage);
                 };
             });
         },
