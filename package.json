@@ -2,6 +2,9 @@
     "name": "t3-chat",
     "version": "0.1.0",
     "private": true,
+    "engines": {
+        "node": "16.x"
+    },
     "scripts": {
         "dev:ws": "ts-node-dev --project tsconfig.server.json --respawn --transpile-only src/server/wsServer.ts",
         "dev:next": "next dev",
